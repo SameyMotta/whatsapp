@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  	<meta charset="UTF-8">
+	  	<title>Whatsapp Web</title>
+	  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	  	<link rel="shortcut icon" href="image/favicon.png" type="image/png">
+	  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CRoboto:300,400,500" media="all">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	  	<link rel="shortcut icon" href="image/favicon.png" type="image/png">
+	  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CRoboto:300,400,500" media="all">
+	  	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+
+	  	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	  	<!-- Vincula los CSS que faltan -->
+	  
+
+	</head>
+
+	<body>
+	<div id="bienvenida" class="fondo">
+	<div class="fondo_interno">
+	
+		<h3>Mi nombre es:</h3>
+		<input type="text" id="nombre" class="form-control">
+		<button class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="guardarNombre()">Entrar</button>
+	</div>
+	</div>
+
+
+	<div class="row fondo_normal">
+		<div class="container">
+
+			<div id="chat" class=" otro">
+				<h1 class="titulo">Laboratoria Peru <img src="image/logo.png"></h1>
+
+			
+
+				<div class="header-chat col-md-4 sara">
+
+					<form action=""><input class="total" type="search" name="nombre" placeholder="Buscar o emprezar un chat nuevo"><i class="glyphicon glyphicon-search"></i></input></form>
+
+					<iframe src="http://www.virtualnauta.com" width="100%" height="450px" scrolling="yes"></iframe>
+					
+				
+				</div>
+			
+				<div class="col-md-8 sara">
+
+					<ul id="lista_mensajes" class="list-group especial"></ul>
+
+					<div id="caja-mensaje">
+						<input type="text" placeholder="Escribir mensaje..." id="mensaje" class="form-control"></input>
+						
+						<button onclick="enviarMensaje()">Enviar <i class="glyphicon glyphicon-envelope"></i> </button>
+
+						<button onclick="limpiarMensajes()">Limpiar <i class="glyphicon glyphicon-envelope"></i> </button>
+
+					</div>
+
+					
+
+					<p>
+						<small style="font-size:10px;">Si haces uso de este chat aceptas me obedecer por el resto de tu vida</small>
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '753698164772101',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+	<script>
+		var socket = io('/');
+		var nombre;
+
+		function guardarNombre()
+		{
+			nombre = $('#nombre').val();
+			$('#bienvenida').hide();
+			$('#chat').show();
+		}
+
+		function enviarMensaje()
+		{
+			socket.emit('chat', "<span class='label label-danger'>" +  nombre + "</span> : " + $('#mensaje').val()  );
+			$('#mensaje').val('');
+			$('#mensaje').focus();
+		}
+
+		function limpiarMensajes()
+		{
+			$('#lista_mensajes').html('');
+		}
+
+		socket.on('nuevo_mensaje', function (_msg)
+		{
+			$('#lista_mensajes').append('<li class="list-group-item">' + _msg + '</li>');
+		});
+
+	</script>
+</body>
+</html>

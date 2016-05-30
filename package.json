@@ -1,0 +1,27 @@
+{
+  "name": "whatsapp",
+  "version": "1.0.0",
+  "description": "ejercicio",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://SameyMotta@github.com/SameyMotta/whatsapp.git"
+  },
+  "author": "sara melina llayqui motta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SameyMotta/whatsapp/issues"
+  },
+  "homepage": "https://github.com/SameyMotta/whatsapp#readme"
+}
