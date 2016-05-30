@@ -38,8 +38,13 @@ width: 100%;
 .sara{
 	height: 100%;
 }
+
 .titulo{
 	text-align: center;
+	background: #FAF5F9;
+	border: 3px solid #A10282;
+	width: 94%;
+	margin-left: 3%;
 }
 .total{
 	width: 90%;
@@ -56,12 +61,21 @@ width: 100%;
 .sara {
 	height: 500px;
 	background-color: #FAF5F9;
+	border: 3px solid #A10282;
+	margin: 2px;
+
+}	
+
+.derecha{
+	margin-left: 40px;
+	margin-right: 20px;
 }
+
 #caja-mensaje{
 	background-color: #A8DCF7;
 	margin: 0 auto;
 	padding: 10px;
-	width: 80%;
+	width: 100%;
 }
 #caja-mensaje input{
 	border: solid 1px #4193BF;
@@ -87,4 +101,30 @@ width: 100%;
 	padding: 15px;
 	vertical-align: top;
 	width: 280px;
+}
+.chat_mensajes{
+	overflow-y: scroll;
+	height: 350px;
+
+}
+
+.redondo{
+	width: 8%;
+	border-radius: 100%;
+}
+
+.lista img{
+	width: 20%;
+	border-radius: 100%;
+	
+}
+.lista p{
+	font-size: 10px;
+}
+
+.lista h4{
+	font-size: 13px;
+}
+.inline{
+	display: inline-block;
 }
